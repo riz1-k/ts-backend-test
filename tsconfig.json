@@ -6,12 +6,13 @@
     "allowJs": true,
     "target": "es2016",
     "module": "commonjs",
-    "typeRoots": ["./@types/*"],
+    "typeRoots": ["./types/*"],
     "outDir": "./build",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "esModuleInterop": true
   }
 }
