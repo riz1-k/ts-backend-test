@@ -14,5 +14,6 @@
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "esModuleInterop": true
-  }
+  },
+  "exclude": ["build", "node_modules", "./build"]
 }
