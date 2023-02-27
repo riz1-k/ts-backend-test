@@ -1,9 +1,10 @@
-import { Request, Response } from 'express';
-import {
-  TypeUserRegisterBody,
-  TypeUserLoginBody,
-} from '../validators/user.validator';
+import { type Request, type Response } from 'express';
+
 import User from '../../models/user.model';
+import {
+  type TypeUserLoginBody,
+  type TypeUserRegisterBody,
+} from '../validators/user.validator';
 
 const userRegister = async (req: Request, res: Response) => {
   const newUser: TypeUserRegisterBody = req.body;
@@ -41,4 +42,4 @@ const userLogin = async (req: Request, res: Response) => {
   }
 };
 
-export { userRegister, userLogin };
+export { userLogin, userRegister };

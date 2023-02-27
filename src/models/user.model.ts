@@ -1,15 +1,15 @@
 import {
-  Model,
-  PassportLocalDocument,
-  PassportLocalModel,
-  PassportLocalSchema,
-  Types,
-  Schema,
+  type Model,
   model,
+  type PassportLocalDocument,
+  type PassportLocalModel,
+  type PassportLocalSchema,
+  Schema,
+  type Types,
 } from 'mongoose';
 import passportLocalMongoose from 'passport-local-mongoose';
 
-import sessionSchema, { ISession } from './common/sessionSchema';
+import sessionSchema, { type ISession } from './common/sessionSchema';
 
 export interface IUser extends PassportLocalDocument {
   _id: Types.ObjectId;
@@ -46,7 +46,7 @@ userSchema.set('toJSON', {
 
 userSchema.statics.isEmailExists = async function (email: string) {
   const user = await this.findOne({ email });
-  return !!user;
+  return !(user == null);
 };
 
 userSchema.plugin(passportLocalMongoose, {

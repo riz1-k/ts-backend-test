@@ -23,5 +23,5 @@ const userLoginSchema = z.object({
 type TypeUserRegisterBody = z.infer<typeof userRegisterSchema>;
 type TypeUserLoginBody = z.infer<typeof userLoginSchema>;
 
-export type { TypeUserRegisterBody, TypeUserLoginBody };
-export { userRegisterSchema, userLoginSchema };
+export type { TypeUserLoginBody, TypeUserRegisterBody };
+export { userLoginSchema, userRegisterSchema };

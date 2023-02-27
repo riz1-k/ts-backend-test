@@ -1,5 +1,6 @@
-import { z } from 'zod';
 import { config } from 'dotenv';
+import { z } from 'zod';
+
 import formatErrors from '../utils/formatErrors';
 
 config();
@@ -38,5 +39,5 @@ if (!serverEnv.success) {
 
 const env = serverEnv.data;
 
-export { verifyEnv, allowedOrigins };
+export { allowedOrigins, verifyEnv };
 export default env;

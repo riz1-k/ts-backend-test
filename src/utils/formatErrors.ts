@@ -1,4 +1,4 @@
-import { ZodFormattedError } from 'zod';
+import { type ZodFormattedError } from 'zod';
 
 const formatErrors = (errors: ZodFormattedError<Map<string, string>, string>) =>
   Object.entries(errors)

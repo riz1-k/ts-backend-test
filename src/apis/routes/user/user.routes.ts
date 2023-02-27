@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { userRegister, userLogin } from '../../controllers/user.controller';
+
 import zodValidator from '../../../utils/zodValidator';
+import { userLogin, userRegister } from '../../controllers/user.controller';
 import {
-  userRegisterSchema,
   userLoginSchema,
+  userRegisterSchema,
 } from '../../validators/user.validator';
 const userAuthRouter = Router();
 

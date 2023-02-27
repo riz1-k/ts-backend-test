@@ -1,4 +1,5 @@
-import { Application } from 'express';
+import { type Application } from 'express';
+
 import connectToDatabase from './database';
 import { verifyEnv } from './env';
 import expressLoader from './express';

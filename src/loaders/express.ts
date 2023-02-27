@@ -1,11 +1,10 @@
 import bodyparser from 'body-parser';
-import cors from 'cors';
-import { CorsOptions } from 'cors';
+import cors, { type CorsOptions } from 'cors';
+import { type Application, type Request, type Response } from 'express';
 import helment from 'helmet';
 import morgan from 'morgan';
-import { Application, Request, Response } from 'express';
-import routes from '../apis/routes';
 
+import routes from '../apis/routes';
 import logger from '../utils/logger';
 
 const expressLoader = (app: Application) => {

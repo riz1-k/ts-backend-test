@@ -1,7 +1,7 @@
 import express from 'express';
 
-import env from './loaders/env';
 import mainLoader from './loaders';
+import env from './loaders/env';
 import logger from './utils/logger';
 
 console.clear();
@@ -20,4 +20,4 @@ async function initialize() {
   });
 }
 
-initialize();
+void initialize();

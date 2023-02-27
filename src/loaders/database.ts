@@ -1,4 +1,5 @@
-import { set, connect } from 'mongoose';
+import { connect, set } from 'mongoose';
+
 import logger from '../utils/logger';
 import env from './env';
 
