@@ -1,27 +1,30 @@
 import { z } from 'zod';
 
-const userRegisterSchema = z.object({
-  email: z.string().email('Invalid email'),
-  username: z
-    .string()
-    .min(3, 'Username must be at least 3 characters')
-    .max(20, 'Username must be at most 20 characters'),
-  password: z
-    .string()
-    .min(6, 'Password must be at least 6 characters')
-    .max(20, 'Password must be at most 20 characters'),
+export const validateWalletConnect = z.object({
+  method: z.literal('POST'),
+  body: z
+    .object({
+      walletAddress: z.string(),
+    })
+    .strict(),
 });
 
-const userLoginSchema = z.object({
-  email: z.string().email('Invalid email'),
-  password: z
-    .string()
-    .min(6, 'Password must be at least 6 characters')
-    .max(20, 'Password must be at most 20 characters'),
+export const validateUserBookings = z.object({
+  method: z.literal('GET'),
+  query: z.object({
+    page: z.string(),
+    limit: z.string(),
+  }),
 });
 
-type TypeUserRegisterBody = z.infer<typeof userRegisterSchema>;
-type TypeUserLoginBody = z.infer<typeof userLoginSchema>;
-
-export type { TypeUserLoginBody, TypeUserRegisterBody };
-export { userLoginSchema, userRegisterSchema };
+export const validateUserUpdate = z.object({
+  method: z.literal('PUT'),
+  body: z
+    .object({
+      username: z.string().optional(),
+      email: z.string().optional(),
+      phoneNumber: z.string().optional(),
+      profileImage: z.string().optional(),
+    })
+    .strict(),
+});

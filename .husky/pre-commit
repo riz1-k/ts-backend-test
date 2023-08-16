@@ -1,44 +1,34 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
-echo '🏗️👷 Styling, testing and building your project before committing'
-
+echo '🔄 Initializing the formatting check, test, and build process before committing...'
 
 # Check Prettier standards
-npm run check-format ||
+pnpm run check-format ||
 (
-    echo '🤢🤮🤢🤮 Its F**KING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
-            Prettier Check Failed. Run npm run format, add changes and try commit again.';
+    echo '🚫 Prettier standards are not met.
+          Run pnpm run format, include changes, and attempt to commit again.'
     false;
 )
 
 # Check ESLint Standards
-npm run check-lint ||
+pnpm run check-lint ||
 (
-        echo '😤🏀👋😤 Get that weak s**t out of here! 😤🏀👋😤 
-                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-        false; 
+        echo '🚫 ESLint standards are violated.
+              Implement the necessary changes listed above, include them, and try committing again.'
+        false;
 )
 
-# npm run check-types ||
-# (
-#         echo '😤🏀👋😤 Get that weak s**t out of here! 😤🏀👋😤 
-#                 Typescript Check Failed. Make the required changes listed above, add changes and try to commit again.'
-#         false; 
-# )
+# If all checks pass... we can attempt a build
+echo '✅ Formatting and linting checks passed. Initiating build...'
 
-
-
-npm run build ||
+pnpm run build ||
 (
-        echo '🚧🏗️👷 Get that weak s**t out of here! 🚧🏗️👷 
-                Build Failed. Make the required changes listed above, add changes and try to commit again.'
-        false; 
+    echo '🔴 Build process unsuccessful.
+          Refer to the errors above for more information.'
+    false;
 )
 
-# If everything passes... Now we can commit
-echo '🤔🤔🤔🤔... Alright... Code looks good to me... 🤔🤔🤔🤔'
-
-# If everything passes... Now we can commit
-echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
+# If all checks pass and build is successful... we can commit
+echo '✅ All checks have passed and build was successful. Proceeding with the commit...'
 

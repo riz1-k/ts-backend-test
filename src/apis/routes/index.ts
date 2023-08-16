@@ -1,9 +1,13 @@
 import { Router } from 'express';
 
-import userAuthRouter from './user/user.routes';
+import { bookingRouter } from './booking';
+import { hotelRouter } from './hotel';
+import { locationRouter } from './location';
+import { userRouter } from './user';
 
-const routes = Router();
+export const apiRouter = Router();
 
-routes.use('/auth', userAuthRouter);
-
-export default routes;
+apiRouter.use('/hotel', hotelRouter);
+apiRouter.use('/user', userRouter);
+apiRouter.use('/booking', bookingRouter);
+apiRouter.use('/location', locationRouter);

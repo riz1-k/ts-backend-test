@@ -2,8 +2,7 @@ import 'winston-mongodb';
 
 import winston from 'winston';
 
-import env from '../loaders/env';
-
+import { env } from './env';
 const mongoTransport = new winston.transports.MongoDB({
   // db: 'mongodb+srv://cartibuy:emG8aF7Cr6IVE3tv@cartibuy.uw8m1ik.mongodb.net/cartibuy_db?retryWrites=true&w=majority',
   db: env.DATABASE_URL,

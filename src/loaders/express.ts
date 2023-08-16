@@ -1,11 +1,15 @@
 import bodyparser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import cors, { type CorsOptions } from 'cors';
 import { type Application, type Request, type Response } from 'express';
 import helment from 'helmet';
 import morgan from 'morgan';
 
-import routes from '../apis/routes';
-import logger from '../utils/logger';
+import { apiRouter } from '../apis/routes';
+import { env } from '../lib/utils/env';
+import logger from '../lib/utils/logger';
+
+const whiteListedDomains: string[] = ['http://localhost:3005'];
 
 const expressLoader = (app: Application) => {
   process.on('uncaughtException', (ex) => {
@@ -21,9 +25,17 @@ const expressLoader = (app: Application) => {
   });
 
   const corsOptions: CorsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200,
+    origin(origin, callback) {
+      if (!origin || whiteListedDomains.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
   };
+
+  app.use(cookieParser(env.COOKIE_SECRET));
 
   app.use(cors(corsOptions));
   app.use(helment());
@@ -32,7 +44,7 @@ const expressLoader = (app: Application) => {
   app.use(
     morgan('dev', { stream: { write: (message) => logger.info(message) } })
   );
-  app.use('/api', routes);
+  app.use('/api', apiRouter);
 
   app.get('/', (_req, res) =>
     res
