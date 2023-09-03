@@ -1,8 +1,8 @@
 import express from 'express';
 
-import mainLoader from './loaders';
 import { env } from './lib/utils/env';
 import logger from './lib/utils/logger';
+import mainLoader from './loaders';
 
 console.clear();
 const spinner = ['|', '/', '-', '\\'];

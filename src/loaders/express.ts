@@ -5,7 +5,7 @@ import { type Application, type Request, type Response } from 'express';
 import helment from 'helmet';
 import morgan from 'morgan';
 
-import { apiRouter } from '../apis/routes';
+// import { apiRouter } from '../apis/routes';
 import { env } from '../lib/utils/env';
 import logger from '../lib/utils/logger';
 
@@ -44,7 +44,7 @@ const expressLoader = (app: Application) => {
   app.use(
     morgan('dev', { stream: { write: (message) => logger.info(message) } })
   );
-  app.use('/api', apiRouter);
+  // app.use('/api', apiRouter);
 
   app.get('/', (_req, res) =>
     res
