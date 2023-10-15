@@ -1,34 +1,44 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-echo '🔄 Initializing the formatting check, test, and build process before committing...'
+echo '🏗️👷 Styling, testing and building your project before committing'
+
 
 # Check Prettier standards
-pnpm run check-format ||
+npm run check-format ||
 (
-    echo '🚫 Prettier standards are not met.
-          Run pnpm run format, include changes, and attempt to commit again.'
+    echo '🤢🤮🤢🤮 Its F**KING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
+            Prettier Check Failed. Run npm run format, add changes and try commit again.';
     false;
 )
 
 # Check ESLint Standards
-pnpm run check-lint ||
+npm run check-lint ||
 (
-        echo '🚫 ESLint standards are violated.
-              Implement the necessary changes listed above, include them, and try committing again.'
-        false;
+        echo '😤🏀👋😤 Get that weak s**t out of here! 😤🏀👋😤 
+                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+        false; 
 )
 
-# If all checks pass... we can attempt a build
-echo '✅ Formatting and linting checks passed. Initiating build...'
+# npm run check-types ||
+# (
+#         echo '😤🏀👋😤 Get that weak s**t out of here! 😤🏀👋😤 
+#                 Typescript Check Failed. Make the required changes listed above, add changes and try to commit again.'
+#         false; 
+# )
 
-pnpm run build ||
+
+
+npm run build ||
 (
-    echo '🔴 Build process unsuccessful.
-          Refer to the errors above for more information.'
-    false;
+        echo '🚧🏗️👷 Get that weak s**t out of here! 🚧🏗️👷 
+                Build Failed. Make the required changes listed above, add changes and try to commit again.'
+        false; 
 )
 
-# If all checks pass and build is successful... we can commit
-echo '✅ All checks have passed and build was successful. Proceeding with the commit...'
+# If everything passes... Now we can commit
+echo '🤔🤔🤔🤔... Alright... Code looks good to me... 🤔🤔🤔🤔'
+
+# If everything passes... Now we can commit
+echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
 

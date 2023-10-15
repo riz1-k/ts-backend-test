@@ -1,7 +1,7 @@
 import { connect, set } from 'mongoose';
 
-import { env } from '../lib/utils/env';
-import logger from '../lib/utils/logger';
+import logger from '../utils/logger';
+import env from './env';
 
 const connectToDatabase = async () => {
   try {
